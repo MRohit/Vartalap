@@ -1,0 +1,257 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.15
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema vartalap_db
+--
+
+CREATE DATABASE IF NOT EXISTS vartalap_db;
+USE vartalap_db;
+
+--
+-- Definition of table `answer`
+--
+
+DROP TABLE IF EXISTS `answer`;
+CREATE TABLE `answer` (
+  `answer_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rating` int(10) unsigned NOT NULL,
+  `date` datetime NOT NULL,
+  `answer` text NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`answer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answer`
+--
+
+/*!40000 ALTER TABLE `answer` DISABLE KEYS */;
+INSERT INTO `answer` (`answer_id`,`rating`,`date`,`answer`,`user_id`,`question_id`) VALUES 
+ (1,1,'2015-12-19 19:31:32','Using amchart library',17,89),
+ (2,2,'2015-12-19 19:32:14','plz visit website<div>amchart.com</div>',17,89),
+ (3,2,'2015-12-19 19:32:14','Download charts js files and link this files to your html code. follow the instruction provided by vendor..',17,89),
+ (4,0,'2015-12-19 19:34:35','refer the w3schoolwebsite.',17,89),
+ (5,0,'2015-12-19 19:49:10','hello dear',15,89),
+ (6,0,'2015-12-19 19:49:32','<h5 class=\"alert alert-info\" style=\"font-family: Tahoma, Arial, Verdana;\">plz visit website<div>amchart.com</div></h5>',17,89),
+ (7,4,'2015-12-19 19:50:05','Please contact Admin Section',12,92),
+ (8,2,'2015-12-19 19:50:13','Just add new PHP libraries. Everything else works fine.',9,90),
+ (9,4,'2015-12-19 20:02:56','plz mail to ask HR by mentioning ur address details ur query get solved within 24 hrs',15,91),
+ (10,1,'2015-12-19 20:04:11','Pls report at security gate and contact the security officer.. They will issue temporary access card.',17,92);
+/*!40000 ALTER TABLE `answer` ENABLE KEYS */;
+
+
+--
+-- Definition of table `answer1`
+--
+
+DROP TABLE IF EXISTS `answer1`;
+CREATE TABLE `answer1` (
+  `ANSWER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `RATING` int(11) DEFAULT NULL,
+  `DATE` datetime DEFAULT NULL,
+  `ANSWER` varchar(255) NOT NULL,
+  `USER_ID` int(11) DEFAULT NULL,
+  `idx` int(11) DEFAULT NULL,
+  `QUESTION_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ANSWER_ID`),
+  UNIQUE KEY `ANSWER` (`ANSWER`),
+  KEY `FK735D33BEB109BCB9` (`USER_ID`),
+  KEY `FK735D33BE87197B59` (`QUESTION_ID`),
+  CONSTRAINT `answer1_ibfk_1` FOREIGN KEY (`QUESTION_ID`) REFERENCES `question` (`QUESTION_ID`) ON DELETE CASCADE,
+  CONSTRAINT `answer1_ibfk_2` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`) ON DELETE CASCADE,
+  CONSTRAINT `FK735D33BE87197B59` FOREIGN KEY (`QUESTION_ID`) REFERENCES `question` (`QUESTION_ID`),
+  CONSTRAINT `FK735D33BEB109BCB9` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answer1`
+--
+
+/*!40000 ALTER TABLE `answer1` DISABLE KEYS */;
+/*!40000 ALTER TABLE `answer1` ENABLE KEYS */;
+
+
+--
+-- Definition of table `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE `login` (
+  `loginId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `userName` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  PRIMARY KEY (`loginId`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+INSERT INTO `login` (`loginId`,`userName`,`password`) VALUES 
+ (1,'rohit_mourya','password'),
+ (3,'Gokul82','welcome'),
+ (4,'Shyam_singh','pass'),
+ (5,'iamManish_rk','manish'),
+ (6,'akshu1111','00000000'),
+ (7,'rohit311','rohit311'),
+ (8,'vallari','12345'),
+ (9,'pratap','pass'),
+ (10,'shyam11','0000'),
+ (11,'akashm','akash'),
+ (12,'akshata','123'),
+ (13,'akshata','123'),
+ (14,'gokul182','welcome');
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+
+
+--
+-- Definition of table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE `question` (
+  `QUESTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION` text,
+  `TITLE` varchar(255) DEFAULT NULL,
+  `TYPE` varchar(255) DEFAULT NULL,
+  `DATE` datetime DEFAULT NULL,
+  `USER_ID` int(11) DEFAULT NULL,
+  `views` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`QUESTION_ID`),
+  UNIQUE KEY `TITLE` (`TITLE`),
+  KEY `FKE9282BE6B109BCB9` (`USER_ID`),
+  CONSTRAINT `FKE9282BE6B109BCB9` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `question`
+--
+
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` (`QUESTION_ID`,`DESCRIPTION`,`TITLE`,`TYPE`,`DATE`,`USER_ID`,`views`) VALUES 
+ (89,'How to add bar charts and graphs in css and html4,5? Somebody help me pls.','Bar charts and graphs in css and html 4,5','technical','2015-12-19 19:28:07',17,15),
+ (90,'PHP upgradation','How to upgrade PHP 3.0 website to PHP 5.x?','technical','2015-12-19 19:47:33',9,3),
+ (91,'modifying old address with new address','How to update current address with new address?','hr','2015-12-19 19:48:27',9,13),
+ (92,'Access card lost','What to do if I lose access card ?','admin','2015-12-19 19:49:17',9,15),
+ (93,'Basic javascript','What is Javascript?','technical','2015-12-19 20:32:56',20,0),
+ (94,'How to partition drives separately at installation time of new Windows OS 8.1','Windows Installation','technical','2015-12-19 20:33:21',17,0);
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+
+
+--
+-- Definition of table `question_tags`
+--
+
+DROP TABLE IF EXISTS `question_tags`;
+CREATE TABLE `question_tags` (
+  `question_id` int(10) unsigned NOT NULL,
+  `tag_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`question_id`,`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `question_tags`
+--
+
+/*!40000 ALTER TABLE `question_tags` DISABLE KEYS */;
+INSERT INTO `question_tags` (`question_id`,`tag_id`) VALUES 
+ (90,17),
+ (91,18),
+ (92,19),
+ (93,20),
+ (94,21);
+/*!40000 ALTER TABLE `question_tags` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE `tags` (
+  `TAG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TAG_NAME` varchar(255) DEFAULT NULL,
+  `TAG_TYPE` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`TAG_ID`),
+  UNIQUE KEY `TAG_NAME` (`TAG_NAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tags`
+--
+
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+INSERT INTO `tags` (`TAG_ID`,`TAG_NAME`,`TAG_TYPE`) VALUES 
+ (17,'php','technical'),
+ (18,'address','hr'),
+ (19,'access_card','admin'),
+ (20,'javascript','technical'),
+ (21,'Windows','technical');
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+
+
+--
+-- Definition of table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` varchar(255) DEFAULT NULL,
+  `MIDDLE_NAME` varchar(255) DEFAULT NULL,
+  `LAST_NAME` varchar(255) DEFAULT NULL,
+  `EMAIL` varchar(255) DEFAULT NULL,
+  `CONTACT_NO` bigint(20) DEFAULT NULL,
+  `DOB` datetime DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `USER_NAME` varchar(255) DEFAULT NULL,
+  `skills` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`USER_ID`,`FIRST_NAME`,`MIDDLE_NAME`,`LAST_NAME`,`EMAIL`,`CONTACT_NO`,`DOB`,`gender`,`USER_NAME`,`skills`) VALUES 
+ (9,'Gokul','','Bargaje','gokulbargaje@gmail.com',NULL,'1993-00-20 00:00:00','male','Gokul82','technical'),
+ (10,'Shyam','','Singh','Shyam_singh@gmail.com',NULL,'1993-00-03 00:00:00','male','Shyam_singh','technical'),
+ (11,'Manish','R','Khade','m@psl.com',NULL,'2015-00-01 00:00:00','male','iamManish_rk','technical'),
+ (12,'Akshay','A','Bipalliwar','ak@gmail.com',NULL,'1993-00-11 00:00:00','male','akshu1111','admin'),
+ (13,'rohit','uttam','chavan','scorpiorohit311@gmail.com',NULL,'1993-00-03 00:00:00','male','rohit311','technical'),
+ (14,'vallari','shrikant','gokhale','vallari@gmail.com',NULL,'1999-00-08 00:00:00','female','vallari','hr'),
+ (15,'pratap','s','jadhavar','psjadhavar@gmail.cvom',NULL,'1993-00-01 00:00:00','male','pratap','technical'),
+ (16,'Shyam','s','Singh','shyam@gmail.com',NULL,'1993-00-06 00:00:00','male','shyam11','technical'),
+ (17,'Akash','','Manwani','akash@gmail.com',NULL,'1993-00-21 00:00:00','male','akashm','hr'),
+ (18,'akshata','','mane','aksha@gmail.com',NULL,'1995-00-01 00:00:00','female','akshata','hr'),
+ (19,'akshata','','mane','aksha@gmail.com',NULL,'1995-00-01 00:00:00','female','akshata','hr'),
+ (20,'Gokul','M','Bargaje','gokulbargaje@gmail.com',NULL,'1993-00-20 00:00:00','male','gokul182','technical');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

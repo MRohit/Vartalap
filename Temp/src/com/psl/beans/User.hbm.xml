@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 1, 2015 1:53:27 PM by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.psl.beans.User" table="USER">
+        <id name="userId" type="integer"></id>
+        <property name="userName" type="string"></property>
+        
+        <set name="vehicle" table="user_vehicle" cascade="all">
+        
+        	<key column="userId"></key>
+        	<many-to-many column="vehicleId" class="com.psl.beans.Vehicle"></many-to-many>
+        </set>
+        
+    </class>
+</hibernate-mapping>

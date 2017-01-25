@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 14, 2015 8:42:43 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.vartalap.model.User" table="USER">
+        <id name="user_id" type="int">
+            <column name="USER_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="java.lang.String">
+            <column name="FIRST_NAME" />
+        </property>
+        <property name="middleName" type="java.lang.String">
+            <column name="MIDDLE_NAME" />
+        </property>
+        
+        <property name="gender" type="java.lang.String">
+            <column name="gender" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="LAST_NAME" />
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="contact_no" type="long">
+            <column name="CONTACT_NO" />
+        </property>
+        <property name="DOB" type="java.util.Date">
+            <column name="DOB" />
+        </property>
+        <property name="skills" type="java.lang.String">
+            <column name="skills" />
+        </property>
+        
+        <list name="questionList" inverse="false" table="QUESTION" lazy="true">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.vartalap.model.Question" />
+        </list>
+        
+        <list name="answerList" inverse="false" table="ANSWER" lazy="true">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.vartalap.model.Answer" />
+        </list>
+    </class>
+</hibernate-mapping>

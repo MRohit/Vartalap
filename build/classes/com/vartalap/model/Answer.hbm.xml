@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 14, 2015 8:42:43 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.vartalap.model.Answer" table="ANSWER">
+        <id name="answer_id" type="int">
+            <column name="ANSWER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="rating" type="int">
+            <column name="RATING" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+        <property name="answer" type="java.lang.String">
+            <column name="ANSWER" />
+        </property>
+        
+        <!-- <list name="questionList" inverse="false" table="QUESTION" lazy="true">
+            <key>
+                <column name="ANSWER_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.vartalap.model.Question" />
+        </list>
+        <list name="userList" inverse="false" table="USER" lazy="true">
+            <key>
+                <column name="ANSWER_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.vartalap.model.User" />
+        </list> -->
+    </class>
+</hibernate-mapping>
